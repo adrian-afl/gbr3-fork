@@ -53,6 +53,17 @@ arm_func vm_disableNestedIrqs
 yieldGbaIrqsGbaMode:
     swi 0x7F0000 // swiVMReturnFromYield
 
+arm_func vm_disableIrqYielding
+    mov r1, #0
+    adr r2, gIrqYieldingEnabled
+    swp r0, r1, [r2]
+    bx lr
+
+arm_func vm_restoreIrqYielding
+    adr r1, gIrqYieldingEnabled
+    str r0, [r1]
+    bx lr
+
 .section ".itcm", "ax"
 
 arm_func vm_yieldGbaIrqs
