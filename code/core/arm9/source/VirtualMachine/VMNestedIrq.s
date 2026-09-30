@@ -7,6 +7,10 @@
 #define IRQ_RETURN_FOR_NESTED_IRQ_ENABLE    0xE2 // always condition for subs pc, r13, #4
 #define IRQ_RETURN_FOR_NESTED_IRQ_DISABLE   0x92 // LS condition for sublss pc, r13, #4
 
+.global gIrqYieldingEnabled
+gIrqYieldingEnabled:
+    .word 0
+
 .global vm_nestedIrqLevel
 vm_nestedIrqLevel:
     .word 0
