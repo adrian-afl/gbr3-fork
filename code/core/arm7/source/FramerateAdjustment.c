@@ -23,7 +23,7 @@ static void vcountIrq(u32 irqMask)
         sRateCounter -= NDS_CYCLES_PER_LINE;
 
         // safety check to prevent repeating two lines if the current line just happens to end
-        while (gfx_isInHBlank()); 
+        while (gfx_isInHBlank());
 
         // repeat the current line
         gfx_setVCount(gfx_getVCount());
@@ -42,16 +42,16 @@ void fps_startFramerateAdjustment(void)
     {
         return;
     }
-    sFramerateAdjustmentActive = true;
-    sRateCounter = 0;
-    gfx_setVCountMatchIrqEnabled(false);
-    rtos_disableIrqMask(RTOS_IRQ_VCOUNT);
-    rtos_ackIrqMask(RTOS_IRQ_VCOUNT);
-    rtos_setIrqFunc(RTOS_IRQ_VCOUNT, vcountIrq);
-    rtos_enableIrqMask(RTOS_IRQ_VCOUNT);
-    gfx_setVCountMatchLine(FPS_ADJUST_LINE);
-    while (gfx_getVCount() <= FPS_ADJUST_LINE);
-    gfx_setVCountMatchIrqEnabled(true);
+    // sFramerateAdjustmentActive = true;
+    // sRateCounter = 0;
+    // gfx_setVCountMatchIrqEnabled(false);
+    // rtos_disableIrqMask(RTOS_IRQ_VCOUNT);
+    // rtos_ackIrqMask(RTOS_IRQ_VCOUNT);
+    // rtos_setIrqFunc(RTOS_IRQ_VCOUNT, vcountIrq);
+    // rtos_enableIrqMask(RTOS_IRQ_VCOUNT);
+    // gfx_setVCountMatchLine(FPS_ADJUST_LINE);
+    // while (gfx_getVCount() <= FPS_ADJUST_LINE);
+    // gfx_setVCountMatchIrqEnabled(true);
 }
 
 void fps_stopFramerateAdjustment(void)
